@@ -3,10 +3,10 @@ const { hash: hashPassword, compare: comparePassword } = require('../utils/passw
 const { generate: generateToken } = require('../utils/token');
 
 exports.signup = (req, res) => {
-    const { firstname, lastname, email, password } = req.body;
+    const { firstname, lastname, email, password, phone, address, is_admin } = req.body;
     const hashedPassword = hashPassword(password.trim());
 
-    const user = new User(firstname.trim(), lastname.trim(), email.trim(), hashedPassword);
+    const user = new User(firstname.trim(), lastname.trim(), email.trim(), hashedPassword, phone.trim(), address.trim());
 
     User.create(user, (err, data) => {
         if (err) {
@@ -26,6 +26,8 @@ exports.signup = (req, res) => {
         }
     });
 };
+
+
 
 exports.signin = (req, res) => {
     const { email, password } = req.body;
@@ -53,8 +55,10 @@ exports.signin = (req, res) => {
                         token,
                         firstname: data.firstname,
                         lastname: data.lastname,
-                        email: data.email
-                    }
+                        email: data.email,
+                        phone: data.phone,
+                        address: data.address,
+                        is_admin: data.is_admin                  }
                 });
                 return;
             }

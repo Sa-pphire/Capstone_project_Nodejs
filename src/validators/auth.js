@@ -20,7 +20,15 @@ const signup = (req, res, next) => {
             .email()
             .required(),
         password: Joi.string()
-            .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$'))
+            .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$')),
+        phone: Joi.string()
+        .trim()
+        .regex(/^|d{3}-\d{3}-\d{4}$/),
+        address: Joi.string()
+        .trim()
+        .alphanum()
+        .min(3)
+        .max(50)
     });
     validatorHandler(req, res, next, schema);
 };
