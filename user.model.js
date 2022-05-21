@@ -1,5 +1,5 @@
 const db = require('../config/db.config');
-const { createNewUser: createNewUserQuery, findUserByEmail: findUserByEmailQuery} = require('../database/queries');
+const { createNewUser: createNewUserQuery, findUserByEmail: findUserByEmailQuery, setAdminToTrue: setAdminToTrueQuery } = require('../database/queries');
 const { logger } = require('../utils/logger');
 
 class User {
@@ -35,7 +35,6 @@ class User {
                     email: newUser.email,
                     phone: newUser.phone,
                     address: newUser.address
-                    
                 });
         });
     }
@@ -55,7 +54,22 @@ class User {
         })
     }
 
-   
+    static updateByEmail(email, user, result) {
+        db.query(setAdminToTrueQuery, [user.is_admin, email], (err, res) => {
+            if (err){
+                logger.error(err)
+                result(null, err)
+                return;
+            }
+
+            if (res.affectedRows === 0){
+                result({kind: "not found"}, null)
+                return;
+            }
+
+            result(null, user.email)
+        })
+    }
 }
 
 module.exports = User;
