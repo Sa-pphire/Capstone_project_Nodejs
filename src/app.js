@@ -14,7 +14,7 @@ app.use(morgan('dev'));
 app.use(morgan('combined', { stream: httpLogStream }));
 app.use(cors());
 
-app.use('/api/auth', authRoute);
+app.use('/api/v1/auth', authRoute);
 
 app.get('/', (req, res) => {
     res.status(200).send({
