@@ -1,5 +1,5 @@
 const db = require('../config/db.config');
-const { createNewUser: createNewUserQuery, findUserByEmail: findUserByEmailQuery} = require('../database/queries');
+const { createNewUser: createNewUserQuery, findUserByEmail: findUserByEmailQuery } = require('../database/queries');
 const { logger } = require('../utils/logger');
 
 class User {
@@ -21,21 +21,23 @@ class User {
                 newUser.email, 
                 newUser.password,
                 newUser.phone,
-                newUser.address
+                newUser.address,
+                newUser.is_admin
             ], (err, res) => {
                 if (err) {
                     logger.error(err.message);
                     cb(err, null);
                     return;
                 }
+
                 cb(null, {
                     id: res.insertId,
                     firstname: newUser.firstname,
                     lastname: newUser.lastname,
                     email: newUser.email,
                     phone: newUser.phone,
-                    address: newUser.address
-                    
+                    address: newUser.address,
+                    is_admin: newUser.is_admin
                 });
         });
     }
@@ -54,8 +56,6 @@ class User {
             cb({ kind: "not_found" }, null);
         })
     }
-
-   
 }
 
 module.exports = User;
