@@ -1,5 +1,6 @@
 const db = require('../config/db.config');
 const { createNewProperty: createNewPropertyQuery, 
+    findAllProperty: findAllPropertyQuery,
     findPropertyById: findPropertyIdQuery,
     updateProperty: updatePropertyQuery,
     soldProperty: soldPropertyQuery,
@@ -51,6 +52,20 @@ class Property {
         });
     }
 
+    static findAllProperty(cb){
+        db.query(findAllPropertyQuery, (err, res) => {
+            if(err){
+                logger.error(err.message);
+                cb(err, null);
+                return;
+            }
+            if(res.length){
+                cb(null, res);
+                return;
+            }
+        })
+    }
+
     static findByPropertyId(property_id, cb){
         db.query(findPropertyIdQuery, property_id, (err, res) =>{
             if(err){
@@ -59,7 +74,6 @@ class Property {
                 return;
             }
             if(res.length){
-                // console.log(res[0], "RES")
                 cb(null, res[0]);
                 return;
             }
