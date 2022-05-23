@@ -36,12 +36,12 @@ exports.updateProperty = (req, res) => {
     
     const property = new Property( owner, status, price, state.trim(), city.trim(), address.trim(), type.trim(), image_url.trim());
     property.created_on = created_on;
-    let params = [
+    let propertyParameter = [
         property,
         property_id
     ];
 
-    Property.updateProperty(params, (err, data) => {
+    Property.updateProperty(propertyParameter, (err, data) => {
         if (err) {
             res.status(500).send({
                 status: "error",
@@ -71,12 +71,12 @@ exports.soldProperty = (req, res) => {
     
     const property = new Property( owner, status, price, state.trim(), city.trim(), address.trim(), type.trim(), image_url.trim());
     property.created_on = created_on;
-    let params = [
+    let propertyParameter = [
         status,
         property_id
     ];
     
-    Property.soldProperty(params, (err, data) => {
+    Property.soldProperty(propertyParameter, (err, data) => {
         if (err) {
             res.status(500).send({
                 status: "error",
