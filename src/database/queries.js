@@ -46,6 +46,10 @@ const createNewProperty = `
 INSERT INTO properties VALUES(null, ?, ?, ?, ?, ?, ?, ?, ?, NOW())
 `;
 
+const findAllProperty = `
+SELECT * FROM properties
+`;
+
 const findPropertyById = `
 SELECT * FROM properties WHERE id = ?
 `;
@@ -69,6 +73,7 @@ module.exports = {
     findUserByEmail,
     createTableProperties,
     createNewProperty,
+    findAllProperty,
     findPropertyById,
     updateProperty,
     soldProperty,
