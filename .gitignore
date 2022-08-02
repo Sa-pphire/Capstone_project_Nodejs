@@ -124,3 +124,7 @@ dist
 
 **/.DS_Store
 *.log.json
+
+
+#Jest Test
+test/

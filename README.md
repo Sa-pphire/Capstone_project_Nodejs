@@ -1,60 +1,67 @@
-# NodeJS Auth REST API example with Express, Mysql, and JWT
+# Group 45 Capstone_project_Nodejs with Express, Mysql, and JWT
 
 ## Features
+
 1. User can sign up
 2. User can sign in
+3. User can post property
+4. User can update property
+5. User can set property as sold
+6. user can delete property
 
 ## Tools
-* NodeJS/Express: Server
-* MySQL: Storage
-* JWT: Token based authentication
-* bcryptjs: Password security
-* winston/morgan: Logs
-* Joi: Validations
+
+- NodeJS/Express: Server
+- MySQL: Storage
+- JWT: Token based authentication
+- bcryptjs: Password security
+- winston/morgan: Logs
+- Joi: Validations
+- Jest: Authomating unit test
 
 ## Available scripts
-* `start`: Starts the server with node
-* `start:dev`: Starts the server in watch mode
-* `db:up`: Creates the database
-* `db:down`: Drops the database
-* `tables:up`: Creates database tables
-* `db:init`: Creates both the database and tables
 
-## Getting started
+- `start`: Starts the server with node
+- `start:dev`: Starts the server in watch mode
+- `db:up`: Creates the database
+- `db:down`: Drops the database
+- `tables:up`: Creates database tables
+- `db:init`: Creates both the database and tables
 
-You can either fork this repository or clone it by starting your terminal, then change the directory to where you would like to save it and run
+## API Usage
 
-```sh
-git clone https://github.com/desirekaleba/node-mysql-jwt-auth.git
-```
-Change to the newly downloaded directory with
+User must signup using the route below to gain a token for a day to post property,
 
 ```sh
-cd node-mysql-jwt-auth
+/api/v1/auth/signup
 ```
 
-Rename the file named `.env.example` to `.env` and update the variable values with valid ones
-
-Install the required dependencies with
+update the property the user posted
 
 ```sh
-npm install
+/api/v1/admin/property/:property_id
 ```
 
-Initialize the database with
+set property to sold and
 
 ```sh
-npm run db:init
+/api/v1/admin/property/:property_id/sold
 ```
 
-Start the app with
+delete property
 
 ```sh
-npm start
+/api/v1/admin/property/:property_id
 ```
 
-You can also start it in watch mode with
+GetALL properties
 
 ```sh
-npm run start:dev
+/api/v1/property
+```
+
+Get single property
+
+```sh
+/api/v1/property/:property_id
 ```

@@ -9,7 +9,8 @@
     "db:up": "node src/database/scripts/dbUp.js",
     "db:down": "node src/database/scripts/dbDown.js",
     "tables:up": "node src/database/scripts/tablesUp.js",
-    "db:init": "npm run db:up && npm run tables:up"
+    "db:init": "npm run db:up && npm run tables:up",
+    "tests": "jest --watchAll"
   },
   "keywords": [],
   "author": "Group 45",
@@ -25,6 +26,7 @@
     "mysql": "^2.18.1"
   },
   "devDependencies": {
+    "jest": "^28.1.0",
     "nodemon": "^2.0.16",
     "winston": "^3.7.2"
   },

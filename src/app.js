@@ -3,6 +3,8 @@ const morgan = require('morgan');
 const cors = require('cors');
 
 const authRoute = require('./routes/auth.route');
+const adminRoute = require('./routes/admin.route')
+const propertyRoute = require('./routes/property.route')
 
 const { httpLogStream } = require('./utils/logger');
 
@@ -14,7 +16,9 @@ app.use(morgan('dev'));
 app.use(morgan('combined', { stream: httpLogStream }));
 app.use(cors());
 
-app.use('/api/auth', authRoute);
+app.use('/api/v1/auth', authRoute);
+app.use('/api/v1/admin', adminRoute);
+app.use('/api/v1', propertyRoute);
 
 app.get('/', (req, res) => {
     res.status(200).send({

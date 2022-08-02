@@ -1,19 +1,21 @@
 const User = require('../models/user.model');
+const Property = require('../models/property.model');
 const { hash: hashPassword, compare: comparePassword } = require('../utils/password');
-const { generate: generateToken } = require('../utils/token');
+const { generate: generateToken, decode: decodeToken } = require('../utils/token');
 
 exports.signup = (req, res) => {
-    const { firstname, lastname, email, password } = req.body;
+    const { firstname, lastname, email, password, phone, address } = req.body;
     const hashedPassword = hashPassword(password.trim());
 
-    const user = new User(firstname.trim(), lastname.trim(), email.trim(), hashedPassword);
+    const is_admin = true;
+    const user = new User(firstname.trim(), lastname.trim(), email.trim(), hashedPassword, phone.trim(), address.trim(), is_admin);
 
     User.create(user, (err, data) => {
         if (err) {
             res.status(500).send({
                 status: "error",
                 message: err.message
-            });
+            });  //path 1
         } else {
             const token = generateToken(data.id);
             res.status(201).send({
@@ -22,7 +24,7 @@ exports.signup = (req, res) => {
                     token,
                     data
                 }
-            });
+            }); //path 2
         }
     });
 };
