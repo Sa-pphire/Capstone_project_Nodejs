@@ -1,7 +1,7 @@
 {
   "name": "auth-node-mysql",
   "version": "1.0.0",
-  "description": "",
+  "description": "1. User can sign up\r 2. User can sign in",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
@@ -12,7 +12,7 @@
     "db:init": "npm run db:up && npm run tables:up"
   },
   "keywords": [],
-  "author": "",
+  "author": "Group 45",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -27,5 +27,13 @@
   "devDependencies": {
     "nodemon": "^2.0.16",
     "winston": "^3.7.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sapphirejudith/Capstone_project_Nodejs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sapphirejudith/Capstone_project_Nodejs/issues"
+  },
+  "homepage": "https://github.com/sapphirejudith/Capstone_project_Nodejs#readme"
 }
